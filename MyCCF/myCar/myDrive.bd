@@ -1,0 +1,250 @@
+classType myCar.myDrive
+blockdiagramSpecification Main {
+	methodBody move {
+		outPin active {
+			connection_29, connection_81, connection_177
+		}
+	}
+	simpleIdentifier BrakeMomentuC at (181, 31) {
+		label at (0, 1)
+		inPin connection_6
+		outPin {
+			connection_10
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier move.brakeCtrl at (31, 45) {
+		label at (0, -1)
+		outPin {
+			connection_6
+		}
+		sequenceCall at (-10, -14) {
+			inPin
+		}
+	}
+	addition at (451, 46) size (2, 4) {
+		inPin connection_10
+		inPin connection_161 {
+			bendpoints (90, 0), (90, -50)
+		}
+		inPin connection_167 {
+			bendpoints (60, 0), (60, -130)
+		}
+		inPin connection_173 {
+			bendpoints (310, 0), (310, -300)
+		}
+		outPin {
+			connection_26
+		}
+	}
+	methodArgumentIdentifier move.powerCtrl at (31, 205) {
+		label at (0, -1)
+		outPin {
+			connection_169
+		}
+		sequenceCall at (-10, -14) {
+			inPin
+		}
+	}
+	multiplication at (601, 66) size (2, 3) {
+		inPin connection_26 {
+			bendpoints (110, 0)
+		}
+		inPin connection_28
+		outPin {
+			connection_31
+		}
+	}
+	simpleIdentifier v at (781, 85) {
+		label at (20, -1)
+		inPin connection_30
+		outPin {
+			connection_27
+		}
+		sequenceCall at (-10, -14) {
+			inPin connection_29
+		}
+	}
+	addition at (681, 76) {
+		inPin connection_31
+		inPin connection_27 {
+			bendpoints (40, 0), (40, 40), (-160, 40), (-160, 10)
+		}
+		outPin {
+			connection_30
+		}
+	}
+	simpleIdentifier AirFriction at (181, 91) {
+		label at (0, 1)
+		inPin connection_103 {
+			bendpoints (90, 0), (90, -20)
+		}
+		outPin {
+			connection_161
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier move.mydt at (531, 85) {
+		label at (-20, 9)
+		outPin {
+			connection_28
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier v at (551, 195) {
+		label at (20, -1)
+		inPin outPin {
+			connection_79
+		}
+		sequenceCall at (-10, -14) {
+			inPin
+		}
+	}
+	literal unit resources.kmh "0.0" at (561, 243) size (49, 0) {
+		outPin {
+			connection_84, connection_80
+		}
+	}
+	less at (681, 196) {
+		inPin connection_79
+		inPin connection_80 {
+			bendpoints (20, 0), (20, -30)
+		}
+		outPin {
+			connection_82
+		}
+	}
+	if at (761, 201) {
+		inPin connection_82
+		ifControlFlowOutPin {
+			connection_83
+		}
+		sequenceCall {
+			inPin connection_81
+		}
+	}
+	simpleIdentifier v at (881, 245) {
+		label at (20, -1)
+		inPin connection_84
+		outPin sequenceCall at (-10, -14) {
+			inPin connection_83 {
+				bendpoints (50, 0), (50, 30)
+			}
+		}
+	}
+	simpleIdentifier v at (21, 125) {
+		label at (0, -1)
+		inPin outPin {
+			connection_166, connection_103
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier move.recupCtrl at (31, 235) {
+		label at (0, -1)
+		outPin {
+			connection_168
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	complexIdentifier Drivetrain_instance at (131, 191) size (14, 8) {
+		label at (0, 1)
+		methodCall myCar.Drivetrain.drive {
+			argumentPin powerCtrl at (left, 1) connection_169
+			argumentPin recupCtrl at (left, 4) connection_168
+			argumentPin v at (top, 2) connection_166 {
+				bendpoints (90, 0)
+			}
+			argumentPin ds at (left, 6) connection_174 {
+				bendpoints (0, -20), (-50, -20)
+			}
+			returnPin at (right, 0) {
+				connection_167
+			}
+			sequenceCall at (0, 6) {
+				inPin
+			}
+		}
+	}
+	complexIdentifier Environment_instance at (21, 321) size (14, 8) {
+		label at (0, 1)
+		methodCall myCar.Environment.move {
+			argumentPin myg at (left, 0) connection_172
+			argumentPin mydt at (left, 4) connection_171
+			argumentPin v at (left, 6) connection_175 {
+				bendpoints (10, 0)
+			}
+			returnPin at (right, 5) {
+				connection_173
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+		elementCall (myCar.Environment.ds) {
+			returnPin at (right, 0) {
+				connection_176, connection_174
+			}
+			sequenceCall at (0, 0) {
+				inPin
+			}
+		}
+	}
+	methodArgumentIdentifier move.mydt at (-59, 365) {
+		label at (0, -1)
+		outPin {
+			connection_171
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier move.myg at (-29, 325) {
+		label at (0, -1)
+		outPin {
+			connection_172
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier v at (-49, 395) {
+		label at (0, -1)
+		inPin outPin {
+			connection_175
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	complexIdentifier odo_inst at (271, 281) size (14, 8) {
+		label at (0, 1)
+		methodCall myCar.Odometer.calc {
+			argumentPin ds at (left, 0) connection_176 {
+				bendpoints (0, -40)
+			}
+			returnPin at (right, 1) {
+				connection_178
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	simpleIdentifier mileage at (421, 295) {
+		label at (0, -1)
+		inPin connection_178
+		outPin sequenceCall {
+			inPin connection_177
+		}
+	}
+}

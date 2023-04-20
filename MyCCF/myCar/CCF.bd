@@ -1,0 +1,284 @@
+classType myCar.CCF
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active {
+			connection_14, connection_16, connection_23, connection_25, connection_27, connection_29, connection_156, connection_49, connection_51, connection_53, connection_44, connection_45, connection_102, connection_59
+		}
+	}
+	simpleIdentifier resources.DriverMessages.on at (21, 165) {
+		label at (0, -1)
+		outPin {
+			connection_15
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.CarMessages.power at (901, 335) {
+		label at (0, -1)
+		inPin connection_46 {
+			bendpoints (40, 0)
+		}
+		sequenceCall at (-10, -14) {
+			inPin connection_45
+		}
+	}
+	simpleIdentifier resources.DriverMessages.brake at (531, 375) {
+		label at (0, -1)
+		outPin {
+			connection_52
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.DriverMessages.power at (531, 345) {
+		label at (0, -1)
+		outPin {
+			connection_50
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.CarMessages.v at (171, 205) {
+		label at (0, -1)
+		outPin {
+			connection_7
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	complexIdentifier TVI at (331, 171) size (14, 8) backgroundColor #ffffff {
+		label at (40, -79)
+		methodCall myCar.TargetVelocity.inc {
+			methodVoidPin at (bottom, 1) sequenceCall at (-24, 11) {
+				inPin connection_4 {
+					bendpoints (-10, 0), (-10, -7), (10, -7)
+				}
+			}
+		}
+		methodCall myCar.TargetVelocity.dec {
+			methodVoidPin at (bottom, 11) sequenceCall at (-14, 11) {
+				inPin connection_5 {
+					bendpoints (100, 0), (100, -90)
+				}
+			}
+		}
+		methodCall myCar.TargetVelocity.velocity {
+			returnPin at (right, 3) {
+				connection_154
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+		methodCall myCar.TargetVelocity.reset {
+			argumentPin arg at (left, 3) connection_7
+			sequenceCall at (-50, -24) {
+				inPin connection_6 {
+					bendpoints (10, 0), (10, 20)
+				}
+			}
+		}
+	}
+	complexIdentifier OnRising at (101, 151) size (3, 3) backgroundColor #ffffff {
+		label at (0, 1)
+		methodCall SystemLib.Miscellaneous.EdgeRising.compute {
+			argumentPin signal at (left, 1) connection_15
+			sequenceCall at (-70, -30) {
+				inPin connection_14
+			}
+		}
+		methodCall SystemLib.Miscellaneous.EdgeRising.value {
+			returnPin at (right, 1) {
+				connection_54, connection_17
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	if at (201, 161) {
+		inPin connection_17
+		ifControlFlowOutPin {
+			connection_6
+		}
+		sequenceCall {
+			inPin connection_16
+		}
+	}
+	simpleIdentifier resources.DriverMessages.increment at (31, 265) {
+		label at (0, -1)
+		outPin {
+			connection_24
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.DriverMessages.decrement at (31, 355) {
+		label at (0, -1)
+		outPin {
+			connection_26
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	complexIdentifier IncRising at (151, 251) size (3, 3) backgroundColor #ffffff {
+		label at (0, 1)
+		methodCall SystemLib.Miscellaneous.EdgeRising.compute {
+			argumentPin signal at (left, 1) connection_24
+			sequenceCall at (-70, -30) {
+				inPin connection_23
+			}
+		}
+		methodCall SystemLib.Miscellaneous.EdgeRising.value {
+			returnPin at (right, 1) {
+				connection_28
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	complexIdentifier DecRising at (151, 341) size (3, 3) backgroundColor #ffffff {
+		label at (0, 1)
+		methodCall SystemLib.Miscellaneous.EdgeRising.compute {
+			argumentPin signal at (left, 1) connection_26
+			sequenceCall at (-70, -30) {
+				inPin connection_25
+			}
+		}
+		methodCall SystemLib.Miscellaneous.EdgeRising.value {
+			returnPin at (right, 1) {
+				connection_30
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	if at (261, 261) {
+		inPin connection_28
+		ifControlFlowOutPin {
+			connection_4
+		}
+		sequenceCall {
+			inPin connection_27
+		}
+	}
+	if at (261, 351) {
+		inPin connection_30
+		ifControlFlowOutPin {
+			connection_5
+		}
+		sequenceCall {
+			inPin connection_29
+		}
+	}
+	complexIdentifier CCFS at (651, 341) size (20, 8) {
+		label at (40, -19)
+		methodCall myCar.CCFState.cCFStateStatemachineTrigger {
+			methodVoidPin at (top, 4) sequenceCall at (6, -20) {
+				inPin connection_44
+			}
+		}
+		elementCall (myCar.CCFState.pow) {
+			argumentPin at (left, 1) connection_50 {
+				bendpoints (70, 0)
+			}
+			sequenceCall at (-80, -4) {
+				inPin connection_49
+			}
+		}
+		elementCall (myCar.CCFState.bra) {
+			argumentPin at (left, 4) connection_52 {
+				bendpoints (70, 0)
+			}
+			sequenceCall at (-80, -4) {
+				inPin connection_51
+			}
+		}
+		elementCall (myCar.CCFState.pw) {
+			returnPin at (right, 1) {
+				connection_46
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+		elementCall (myCar.CCFState.br) {
+			returnPin at (right, 3) {
+				connection_103
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+		elementCall (myCar.CCFState.on) {
+			returnPin at (right, 5) {
+				connection_60
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+		elementCall (myCar.CCFState.act) {
+			argumentPin at (left, 6) connection_54 {
+				bendpoints (40, 0), (40, 30), (-130, 30), (-130, 240)
+			}
+			sequenceCall at (-30, 16) {
+				inPin connection_53
+			}
+		}
+		elementCall (myCar.CCFState.ctrl) {
+			argumentPin at (top, 1) connection_157
+			sequenceCall at (-44, -20) {
+				inPin connection_156
+			}
+		}
+	}
+	simpleIdentifier resources.DriverMessages.display at (901, 415) {
+		label at (0, -1)
+		inPin connection_60 {
+			bendpoints (40, 0)
+		}
+		sequenceCall at (-10, -14) {
+			inPin connection_59
+		}
+	}
+	simpleIdentifier resources.CarMessages.recuperation at (901, 375) {
+		label at (0, -1)
+		inPin connection_103
+		sequenceCall at (0, -14) {
+			inPin connection_102
+		}
+	}
+	simpleIdentifier resources.CarMessages.v at (461, 135) {
+		label at (0, -1)
+		outPin {
+			connection_155
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	complexIdentifier CCFControl at (521, 151) size (14, 8) {
+		label at (0, 1)
+		methodCall myCar.CCFControllers.calc {
+			argumentPin setSpeed at (left, 5) connection_154
+			argumentPin velocity at (left, 1) connection_155 {
+				bendpoints (0, 30)
+			}
+			returnPin at (right, 0) {
+				connection_157
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+}
